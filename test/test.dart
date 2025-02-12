@@ -10,4 +10,10 @@ void main() {
     expect(StringCalculator.add('1'), equals(1));
     expect(StringCalculator.add('10'), equals(10));
   });
+
+  test('Multiple numbers, comma separated', () {
+    expect(StringCalculator.add('1,2'), equals(3));
+    expect(StringCalculator.add('1,2,3'), equals(6));
+    expect(StringCalculator.add('1,2,3,4,5'), equals(15));
+  });
 }
