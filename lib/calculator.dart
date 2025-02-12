@@ -7,13 +7,24 @@ class StringCalculator {
       return int.parse(numbers);
     }
 
-    var regex = RegExp(r'\d+');
+    // Replace newlines with commas for regular cases
+    var numberString = numbers.replaceAll('\n', ',');
+    return _sumOfNumbers(numberString);
+  }
 
+  static _sumOfNumbers(String numberString) {
+    var regex = RegExp(r'\d+'); //regex for excluding symbols and chars
     List<int> numList = regex
-        .allMatches(numbers)
-        .map((match) => int.parse(match.group(0)!))
+        .allMatches(numberString)
+        .map((match) => stringtoIntCast(match.group(0)!))
         .toList();
 
-    return numList.reduce((value, element) => value + element);
-  } .
+    int sum = numList.reduce((value, element) => value + element);
+    return sum;
+  }
+
+  //string to int cast
+  static int stringtoIntCast(String source) {
+    return int.parse(source);
+  }
 }

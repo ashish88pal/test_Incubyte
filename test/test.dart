@@ -16,4 +16,9 @@ void main() {
     expect(StringCalculator.add('1,2,3'), equals(6));
     expect(StringCalculator.add('1,2,3,4,5'), equals(15));
   });
+
+  test('Newlines should be treated as commas', () {
+    expect(StringCalculator.add('1\n2,3'), equals(6));
+    expect(StringCalculator.add('1,2\n3,4'), equals(10));
+  });
 }
