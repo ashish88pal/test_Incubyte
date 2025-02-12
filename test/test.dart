@@ -42,5 +42,12 @@ void main() {
       expect(StringCalculator.add('2,1001'), equals(2));
       expect(StringCalculator.add('1000,1001,2'), equals(1002));
     });
+
+    test('Multiple delimiters with length greater than one', () {
+      expect(StringCalculator.add('//[***]\n1***2***3'), equals(6));
+      expect(StringCalculator.add('//[*][%]\n1*2%3'), equals(6));
+      expect(StringCalculator.add('//[***][%%]\n1***2%%3'), equals(6));
+      expect(StringCalculator.add('//[a][bb]\n1a2bb3'), equals(6));
+    });
   });
 }

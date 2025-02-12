@@ -10,32 +10,23 @@ class StringCalculator {
 
     // Replace newlines with commas for regular cases
     var numberString = numbers.replaceAll('\n', ',');
-    return _sumOfNumbers(
-      numberString,
-    );
+    return _sumOfNumbers(numberString);
   }
 
   // Handle custom delimiters including multiple delimiters
   static int _handleCustomDelimiter(String numbers) {
     var numberString = numbers.substring(numbers.indexOf('\n') + 1);
-
-    return _sumOfNumbers(
-      numberString,
-    );
+    return _sumOfNumbers(numberString);
   }
 
   static int _sumOfNumbers(String numberString) {
     List<String> numbers = _getListOfNumbers(numberString);
     var sum = 0;
-    // print("numbers + $numbers  length ${numbers.length}");
 
     List<int> negativeNumbers = [];
 
     for (var num in numbers) {
-      // print(num);
       var number = stringtoIntCast(num);
-      // print(number);
-
       // Collect negative numbers for exception handling
       if (number < 0) {
         negativeNumbers.add(number);
@@ -54,19 +45,30 @@ class StringCalculator {
     return sum;
   }
 
-  static List<String> _getListOfNumbers(
-    String numberString,
-  ) {
-    var regex = RegExp(r'-?\d+');
+  static List<String> _getListOfNumbers(String numberString) {
+    RegExp regex = RegExp(r'-?\d+');
 
-    return regex
+    List<String> listOfNumbers = regex
         .allMatches(numberString)
         .map((match) => match.group(0)!) // Convert each match to an integer
         .toList();
+    return listOfNumbers;
   }
 
   //string to int cast
   static int stringtoIntCast(String source) {
     return int.parse(source);
   }
+}
+
+void main() {
+  // Test cases
+  print(StringCalculator.add('')); // Output: 0
+  print(StringCalculator.add('5')); // Output: 5
+  print(StringCalculator.add('1,2,3')); // Output: 6
+  print(StringCalculator.add('1\n3,5')); // Output: 9
+  print(StringCalculator.add('//;\n1;2;3')); // Output: 6
+  print(StringCalculator.add('1000,1001,2')); // Output: 1002
+  print(StringCalculator.add('//[***]\n1***3***9')); // Output: 13
+  print(StringCalculator.add('1,-2,3')); // Throws FormatException
 }
