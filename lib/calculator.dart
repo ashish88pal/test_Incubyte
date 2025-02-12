@@ -1,5 +1,5 @@
 class StringCalculator {
-  static int add(String numbers) {
+  int add(String numbers) {
     if (numbers.isEmpty) {
       return 0;
     }
@@ -14,12 +14,12 @@ class StringCalculator {
   }
 
   // Handle custom delimiters including multiple delimiters
-  static int _handleCustomDelimiter(String numbers) {
+  int _handleCustomDelimiter(String numbers) {
     var numberString = numbers.substring(numbers.indexOf('\n') + 1);
     return _sumOfNumbers(numberString);
   }
 
-  static int _sumOfNumbers(String numberString) {
+  int _sumOfNumbers(String numberString) {
     List<String> numbers = _getListOfNumbers(numberString);
     var sum = 0;
 
@@ -45,7 +45,7 @@ class StringCalculator {
     return sum;
   }
 
-  static List<String> _getListOfNumbers(String numberString) {
+  List<String> _getListOfNumbers(String numberString) {
     RegExp regex = RegExp(r'-?\d+');
 
     List<String> listOfNumbers = regex
@@ -62,13 +62,14 @@ class StringCalculator {
 }
 
 void main() {
+  StringCalculator calculator = StringCalculator();
   // Test cases
-  print(StringCalculator.add('')); // Output: 0
-  print(StringCalculator.add('5')); // Output: 5
-  print(StringCalculator.add('1,2,3')); // Output: 6
-  print(StringCalculator.add('1\n3,5')); // Output: 9
-  print(StringCalculator.add('//;\n1;2;3')); // Output: 6
-  print(StringCalculator.add('1000,1001,2')); // Output: 1002
-  print(StringCalculator.add('//[***]\n1***3***9')); // Output: 13
-  print(StringCalculator.add('1,-2,3')); // Throws FormatException
+  print(calculator.add('')); // Output: 0
+  print(calculator.add('5')); // Output: 5
+  print(calculator.add('1,2,3')); // Output: 6
+  print(calculator.add('1\n3,5')); // Output: 9
+  print(calculator.add('//;\n1;2;3')); // Output: 6
+  print(calculator.add('1000,1001,2')); // Output: 1002
+  print(calculator.add('//[***]\n1***3***9')); // Output: 13
+  print(calculator.add('1,-2,3')); // Throws FormatException
 }
