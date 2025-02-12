@@ -15,5 +15,5 @@ class StringCalculator {
         .toList();
 
     return numList.reduce((value, element) => value + element);
-  }
+  } .
 }
