@@ -39,8 +39,10 @@ class StringCalculator {
       // Collect negative numbers for exception handling
       if (number < 0) {
         negativeNumbers.add(number);
+      } else if (number <= 1000) {
+        // Ignore numbers greater than 1000
+        sum += number;
       }
-      sum += number;
     }
 
     // Throw exception for negative numbers
